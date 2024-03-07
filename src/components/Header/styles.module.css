@@ -1,0 +1,47 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+  margin: 15px;
+  background-color: orange;
+  border-radius: 15px;
+
+  ul {
+    display: flex;
+    list-style: none;
+    li {
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    padding: 5px 15px;
+    font-size: 16px;
+    border-left: 1px solid black;
+    transition: 1s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+header .container {
+  display: flex;
+}
+
+.logo_container {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 25px;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}
