@@ -15,7 +15,7 @@ header {
       a {
         padding: 10px;
         font-size: 14px;
-        color: black;
+        color: white;
         text-decoration: none;
       }
     }
@@ -26,10 +26,10 @@ header {
     border: none;
     padding: 5px 15px;
     font-size: 16px;
-    border-left: 1px solid black;
+    border-left: 1px solid white;
     transition: 1s;
     text-decoration: none;
-    color: black;
+    color: white;
 
     &:hover {
       transform: scale(1.1);
@@ -51,5 +51,27 @@ header .container {
   img {
     display: block;
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  header {
+    padding: 5px;
+
+    ul {
+      li {
+        a {
+          padding: 5px;
+        }
+      }
+    }
+
+    .login_btn {
+      padding: 5px 10px;
+    }
+
+    .logo_container {
+      margin-right: 5px;
+    }
   }
 }
