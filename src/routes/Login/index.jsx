@@ -1,11 +1,34 @@
 import { useOutletContext } from "react-router-dom";
 import styles from "./styles.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Login() {
   const [currentUser, setCurrentUser] = useOutletContext();
+
+  const [formValue, setFormValue] = useState();
   const [emailInputValue, setEmailInputValue] = useState();
   const [passwordInputValue, setPasswordInputValue] = useState();
+
+  console.log(currentUser);
+
+  useEffect(() => {
+    async function fetchUser() {
+      if (formValue) {
+        try {
+          const response = await axios.get(
+            `https://shopping-app-backend-6p1u.onrender.com/users/${formValue.email}`
+          );
+
+          setCurrentUser(response.data[0]);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    }
+
+    fetchUser();
+  }, [formValue]);
 
   return (
     <div className={styles.form_container}>
@@ -23,7 +46,7 @@ export default function Login() {
           <form
             onSubmit={(event) => {
               event.preventDefault();
-              setCurrentUser({
+              setFormValue({
                 email: emailInputValue,
                 password: passwordInputValue,
               });
