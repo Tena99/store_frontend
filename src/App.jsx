@@ -4,10 +4,12 @@ import Header from "./components/Header";
 import { Outlet } from "react-router-dom";
 
 function App() {
+  const [currentUser, setCurrentUser] = useState();
+
   return (
     <>
-      <Header />
-      <Outlet />
+      <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      <Outlet context={[currentUser, setCurrentUser]} />
     </>
   );
 }

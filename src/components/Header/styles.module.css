@@ -54,6 +54,16 @@ header .container {
   }
 }
 
+.currentUser_container {
+  display: flex;
+  align-items: center;
+
+  p {
+    margin-right: 10px;
+    color: white;
+  }
+}
+
 @media only screen and (max-width: 420px) {
   header {
     padding: 5px;

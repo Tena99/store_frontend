@@ -1,8 +1,8 @@
 import styles from "./styles.module.css";
 import logo from "../../assets/images/logo.jpeg";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
-export default function Header() {
+export default function Header({ currentUser, setCurrentUser }) {
   return (
     <header>
       <div className={styles.container}>
@@ -26,9 +26,23 @@ export default function Header() {
         </ul>
       </div>
 
-      <Link to={"/login"} className={styles.login_btn}>
-        Login
-      </Link>
+      {currentUser ? (
+        <div className={styles.currentUser_container}>
+          <p>{currentUser.email}</p>
+          <button
+            className={styles.login_btn}
+            onClick={() => {
+              setCurrentUser("");
+            }}
+          >
+            Logout
+          </button>
+        </div>
+      ) : (
+        <Link to={"/login"} className={styles.login_btn}>
+          Login
+        </Link>
+      )}
     </header>
   );
 }
