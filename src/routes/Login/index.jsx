@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import styles from "./styles.module.css";
 import { UserContext } from "../../../Context /creatConext";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
@@ -10,7 +10,7 @@ export default function Login() {
 
   const [emailInputValue, setEmailInputValue] = useState("");
   const [passwordInputValue, setPasswordInputValue] = useState("");
-  const history = useHistory();
+  const history = useNavigate();
 
   useEffect(() => {
     if (user) {
@@ -22,14 +22,22 @@ export default function Login() {
     event.preventDefault();
     if (emailInputValue && passwordInputValue) {
       try {
-        const response = await axios.get(
-          `https://shopping-app-backend-6p1u.onrender.com/users/${emailInputValue}`
+        const usersList = await axios.get(
+          `https://shopping-app-backend-6p1u.onrender.com//users`
         );
-        const fetchedUser = response.data[0];
-        if (fetchedUser.password === passwordInputValue) {
-          login(fetchedUser);
-        } else {
-          console.log("Falsches Passwort");
+
+        if (usersList) {
+          let user = usersList.data.find((user) => {
+            if (user.email === emailInputValue) {
+              return user;
+            }
+          });
+
+          if (user.password === passwordInputValue) {
+            login(user);
+          } else {
+            console.log("Wrong Password");
+          }
         }
       } catch (error) {
         console.error(error);
