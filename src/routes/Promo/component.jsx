@@ -1,4 +1,8 @@
+import { UserContext } from "../../../Context /creatConext";
+import { useContext } from "react";
 export default function Promo() {
+  const { user, login } = useContext(UserContext);
+
   return (
     <div style={{ textAlign: "center", paddingTop: "50px" }}>
       <h2>Latest Promotions</h2>

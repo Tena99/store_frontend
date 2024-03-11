@@ -4,7 +4,7 @@ import cupcakes_img from "../../assets/images/cupcakes.jpg";
 import cakes_img from "../../assets/images/cakes.jpg";
 import { useEffect, useReducer } from "react";
 import Thumbnails from "../../components/Thumbnails/Thumbnails";
-import { getAll } from "../../services/foodService";
+import { getAll } from "../../services/sweetService";
 
 const reducer = (state, action) => {
   switch (action.type) {

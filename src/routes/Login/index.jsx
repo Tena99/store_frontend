@@ -1,64 +1,66 @@
-import { useOutletContext } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
 import styles from "./styles.module.css";
-import { useEffect, useState } from "react";
+import { UserContext } from "../../../Context /creatConext";
+import { useHistory } from "react-router-dom";
+
 import axios from "axios";
 
 export default function Login() {
-  const [currentUser, setCurrentUser] = useOutletContext();
+  const { user, login } = useContext(UserContext);
 
-  const [formValue, setFormValue] = useState();
-  const [emailInputValue, setEmailInputValue] = useState();
-  const [passwordInputValue, setPasswordInputValue] = useState();
-
-  console.log(currentUser);
+  const [emailInputValue, setEmailInputValue] = useState("");
+  const [passwordInputValue, setPasswordInputValue] = useState("");
+  const history = useHistory();
 
   useEffect(() => {
-    async function fetchUser() {
-      if (formValue) {
-        try {
-          const response = await axios.get(
-            `https://shopping-app-backend-6p1u.onrender.com/users/${formValue.email}`
-          );
-
-          setCurrentUser(response.data[0]);
-        } catch (error) {
-          console.error(error);
-        }
-      }
+    if (user) {
+      history.push("/Home");
     }
+  }, [user, history]);
 
-    fetchUser();
-  }, [formValue]);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (emailInputValue && passwordInputValue) {
+      try {
+        const response = await axios.get(
+          `https://shopping-app-backend-6p1u.onrender.com/users/${emailInputValue}`
+        );
+        const fetchedUser = response.data[0];
+        if (fetchedUser.password === passwordInputValue) {
+          login(fetchedUser);
+        } else {
+          console.log("Falsches Passwort");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      console.log("Bitte geben Sie E-Mail und Passwort ein");
+    }
+  };
 
   return (
     <div className={styles.form_container}>
-      {currentUser ? (
+      {user ? (
         <p>
-          Nice to see you {currentUser.email}! <br></br> Happy shopping!
+          Schön, dich wieder zu sehen, {user.email}! <br></br>
+          Viel Spaß beim Einkaufen!
         </p>
       ) : (
         <>
           <p>
-            Sweet to see you again! 🍬 <br></br>Login and treat yourself to a
-            delightful experience!
+            Schön, dich wieder zu sehen! 🍬 <br></br>
+            Melden Sie sich an und gönnen Sie sich ein angenehmes Erlebnis!
           </p>
 
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              setFormValue({
-                email: emailInputValue,
-                password: passwordInputValue,
-              });
-            }}
-            className={styles.login_form}
-          >
+          <form onSubmit={handleSubmit} className={styles.login_form}>
             <div className={styles.form_item}>
               <label htmlFor="email">Email</label>
               <input
                 type="email"
                 name="email"
                 id="email"
+                value={emailInputValue}
                 onChange={(event) => setEmailInputValue(event.target.value)}
               ></input>
             </div>
@@ -69,11 +71,12 @@ export default function Login() {
                 type="password"
                 name="password"
                 id="password"
+                value={passwordInputValue}
                 onChange={(event) => setPasswordInputValue(event.target.value)}
               ></input>
             </div>
 
-            <button type="submit">Login</button>
+            <button type="submit">Submit</button>
           </form>
         </>
       )}
