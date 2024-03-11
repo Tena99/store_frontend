@@ -23,7 +23,7 @@ export default function Login() {
     if (emailInputValue && passwordInputValue) {
       try {
         const usersList = await axios.get(
-          `https://shopping-app-backend-6p1u.onrender.com//users`
+          `https://shopping-app-backend-6p1u.onrender.com/users`
         );
 
         if (usersList) {
