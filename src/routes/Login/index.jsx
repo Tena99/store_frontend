@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from "react";
 import styles from "./styles.module.css";
 import { UserContext } from "../../../Context /creatConext";
 import { useNavigate } from "react-router-dom";
-
 import axios from "axios";
 
 export default function Login() {
@@ -43,7 +42,7 @@ export default function Login() {
         console.error(error);
       }
     } else {
-      console.log("Bitte geben Sie E-Mail und Passwort ein");
+      console.log("Please enter email and password");
     }
   };
 
@@ -51,14 +50,14 @@ export default function Login() {
     <div className={styles.form_container}>
       {user ? (
         <p>
-          Schön, dich wieder zu sehen, {user.nickName}! <br></br>
-          Viel Spaß beim Einkaufen!
+          Welcome back, {user.nickName}! <br />
+          Enjoy your shopping!
         </p>
       ) : (
         <>
           <p>
-            Schön, dich wieder zu sehen! 🍬 <br></br>
-            Melden Sie sich an und gönnen Sie sich ein angenehmes Erlebnis!
+            Nice to see you again! 🍬 <br />
+            Log in and treat yourself to a pleasant experience!
           </p>
 
           <form onSubmit={handleSubmit} className={styles.login_form}>

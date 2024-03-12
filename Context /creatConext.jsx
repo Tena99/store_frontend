@@ -1,19 +1,22 @@
 import { useState } from "react";
 import { createContext } from "react";
+
 export const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [passWord, setPassWord] = useState(null);
-  const login = (user) => {
+  const [password, setPassword] = useState(null);
+
+  const login = (user, password) => {
     setUser(user);
-    setPassWord(passWord);
+    setPassword(password);
   };
 
   const logout = () => {
     setUser(null);
-    setPassWord(null);
+    setPassword(null);
   };
+
   return (
     <UserContext.Provider value={{ user, login, logout }}>
       {children}
