@@ -1,0 +1,45 @@
+.promo_container {
+  h2 {
+    margin-left: 25px;
+  }
+
+  .promo_card {
+    width: 30%;
+    margin-right: 10px;
+
+    p {
+      text-align: center;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .promo_qr_code {
+    width: 100%;
+    margin-right: 25px;
+    max-width: 150px;
+  }
+
+  .promo_item {
+    display: flex;
+    align-items: center;
+    width: 85%;
+    margin: auto;
+    margin-bottom: 25px;
+
+    &:first-of-type {
+      justify-content: space-around;
+    }
+  }
+}
+
+@media only screen and (max-width: 620px) {
+  .promo_item {
+    &:last-of-type {
+      flex-direction: column-reverse;
+      width: 85%;
+    }
+  }
+}
