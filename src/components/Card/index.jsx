@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "./thumbnails.module.css";
+import styles from "./styles.module.css";
 import StarRating from "../StarRating/StarRating";
 import axios from "axios";
 
@@ -42,9 +42,9 @@ export default function Thumbnails({ sweets }) {
               >
                 ❤
               </span>
-              <div className={styles.stars}>
+              {/* <div className={styles.stars}>
                 <StarRating starts={sweets.stars} />
-              </div>
+              </div> */}
             </div>
           </li>
         ))
