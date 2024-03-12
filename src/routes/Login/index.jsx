@@ -12,11 +12,11 @@ export default function Login() {
   const [passwordInputValue, setPasswordInputValue] = useState("");
   const history = useNavigate();
 
-  useEffect(() => {
-    if (user) {
-      history.push("/Home");
-    }
-  }, [user, history]);
+  // useEffect(() => {
+  //   if (user) {
+  //     history.push("/Home");
+  //   }
+  // }, [user, history]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -51,7 +51,7 @@ export default function Login() {
     <div className={styles.form_container}>
       {user ? (
         <p>
-          Schön, dich wieder zu sehen, {user.email}! <br></br>
+          Schön, dich wieder zu sehen, {user.nickName}! <br></br>
           Viel Spaß beim Einkaufen!
         </p>
       ) : (

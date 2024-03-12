@@ -29,6 +29,10 @@
     margin: auto;
     margin-bottom: 25px;
 
+    a {
+      margin: 5px;
+    }
+
     &:first-of-type {
       justify-content: space-around;
     }

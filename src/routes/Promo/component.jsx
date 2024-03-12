@@ -3,6 +3,7 @@ import { UserContext } from "../../../Context /creatConext";
 import { useContext } from "react";
 import styles from "./styles.module.css";
 import skeleton from "../../assets/images/skeleton.jpeg";
+import { Link } from "react-router-dom";
 
 export default function Promo() {
   const { user, login } = useContext(UserContext);
@@ -28,21 +29,29 @@ export default function Promo() {
         </div>
       </article>
 
-      <article className={styles.promo_item}>
-        <div className={styles.promo_qr_code}>
-          <QRCodeComponent value={"Some value"} />
-        </div>
+      {user ? (
+        <article className={styles.promo_item}>
+          <div className={styles.promo_qr_code}>
+            <QRCodeComponent value={`scanned by ${user._id}`} />
+          </div>
 
-        <div>
-          <h3>Sweet Scan, Sweeter Savings!</h3>
-          <p>
-            Unlock the flavor of savings with our QR code! Scan our QR code and
-            savor a delightful 10% off your sweet purchases at "Sweets for all".
-            Don't miss this chance to make your treats even more deliciously
-            affordable!
-          </p>
-        </div>
-      </article>
+          <div>
+            <h3>Sweet Scan, Sweeter Savings!</h3>
+            <p>
+              Unlock the flavor of savings with our QR code! Scan our QR code
+              and savor a delightful 10% off your sweet purchases at "Sweets for
+              all". Don't miss this chance to make your treats even more
+              deliciously affordable!
+            </p>
+          </div>
+        </article>
+      ) : (
+        <article className={styles.promo_item}>
+          Do you want to receive a really cool discount? Just
+          <Link to={"/login"}>login</Link> and you will be able to see all our
+          promotions here!
+        </article>
+      )}
     </div>
   );
 }
