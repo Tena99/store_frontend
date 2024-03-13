@@ -48,9 +48,9 @@ export default function Login() {
 
   return (
     <div className={styles.form_container}>
-      {user ? (
+      {user?.nickName ? (
         <p>
-          Welcome back, {user.nickName}! <br />
+          Welcome back, {user?.nickName}! <br />
           Enjoy your shopping!
         </p>
       ) : (

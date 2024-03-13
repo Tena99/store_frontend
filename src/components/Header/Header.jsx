@@ -16,10 +16,10 @@ export default function Header() {
         </div>
         <nav className={styles.nav}>
           <ul className={styles.header_nav}>
-            {user?.name ? (
+            {user?.nickName ? (
               <li className={styles.menu_container}>
                 <Link to="/profile" className={styles.header_link}>
-                  {user?.name}
+                  {user?.nickName}
                 </Link>
                 <div className={styles.menu}>
                   <Link to="/profile" className={styles.header_link}>
