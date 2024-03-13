@@ -14,17 +14,32 @@ export default function Promo() {
 
       <article className={styles.promo_item}>
         <div className={styles.promo_card}>
-          <img src={skeleton} alt="promo"></img>
+          <img
+            src={
+              "https://shopping-app-backend-6p1u.onrender.com/images/promo_50.jpeg"
+            }
+            alt="promo"
+          ></img>
           <p>50% off all products!</p>
         </div>
 
         <div className={styles.promo_card}>
-          <img src={skeleton} alt="promo"></img>
+          <img
+            src={
+              "https://shopping-app-backend-6p1u.onrender.com/images/promo_free_shipping.jpeg"
+            }
+            alt="promo"
+          ></img>
           <p>Free shipping on orders over $100!</p>
         </div>
 
         <div className={styles.promo_card}>
-          <img src={skeleton} alt="promo"></img>
+          <img
+            src={
+              "https://shopping-app-backend-6p1u.onrender.com/images/promo_buy_one.jpeg"
+            }
+            alt="promo"
+          ></img>
           <p>Buy one get one free!</p>
         </div>
       </article>

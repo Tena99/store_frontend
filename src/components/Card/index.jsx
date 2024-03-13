@@ -4,10 +4,8 @@ import styles from "./styles.module.css";
 import StarRating from "../StarRating/StarRating";
 import axios from "axios";
 
-export default function Thumbnails({ sweets }) {
+export default function Cards({}) {
   const [productList, setProductList] = useState();
-
-  console.log(productList);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -29,7 +27,7 @@ export default function Thumbnails({ sweets }) {
             <Link to={`/${product._id}`}>
               <img
                 className={styles.image}
-                src={`/sweets/${product.imageUrl}`}
+                src={`https://shopping-app-backend-6p1u.onrender.com/images/${product._id}.jpeg`}
                 alt={product.name}
               />
             </Link>
@@ -49,33 +47,8 @@ export default function Thumbnails({ sweets }) {
           </li>
         ))
       ) : (
-        <div>Wait</div>
+        <div>Loading... Please wait.</div>
       )}
-
-      {/* {sweets.map((sweet) => (
-        <li key={sweet.id}>
-          <Link to={`/sweet/${sweet.id}`}>
-            <img
-              className={styles.image}
-              src={`/sweets/${sweet.imageUrl}`}
-              alt={sweet.name}
-            />
-          </Link>
-          <div className={styles.content}>
-            <p className={styles.name}>{sweet.name}</p>
-            <span
-              className={`${styles.favorite} ${
-                sweet.favorite ? "" : styles.not
-              }`}
-            >
-              ❤
-            </span>
-            <div className={styles.stars}>
-              <StarRating starts={sweets.stars} />
-            </div>
-          </div>
-        </li>
-      ))} */}
     </ul>
   );
 }
