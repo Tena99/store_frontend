@@ -1,4 +1,4 @@
-header {
+.header {
   background: linear-gradient(#d78100, #f44519);
   border-radius: var(--header-border-radius);
   padding: 10px 0;
@@ -61,13 +61,16 @@ nav ul li a:hover {
 .menu_container {
   position: relative;
 }
+.active {
+  color: #f2ff00;
+  font-weight: bold;
+}
 
 .menu {
   display: none;
   position: absolute;
   z-index: 1001;
   background-color: gray;
-  color: orange;
   width: 5em;
   border-radius: 8px;
 }

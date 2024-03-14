@@ -17,7 +17,7 @@ body {
 a {
   text-decoration: none;
 }
-:root {
+/* :root {
   --header-background-color: orange;
   --header-padding: 5px 10px;
   --header-margin: 15px;
@@ -26,4 +26,4 @@ a {
   --header-color: white;
   --header-cart-count-background-color: #ff4d4d;
   --header-cart-count-color: white;
-}
+} */
