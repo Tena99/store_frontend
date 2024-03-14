@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
-import StarRating from "../StarRating/StarRating";
 import axios from "axios";
 
 export default function Cards({}) {
@@ -19,6 +18,16 @@ export default function Cards({}) {
     fetchProducts();
   }, []);
 
+  const handleFavoriteClick = (productId) => {
+    setProductList((prevList) =>
+      prevList.map((product) =>
+        product._id === productId
+          ? { ...product, favorite: !product.favorite }
+          : product
+      )
+    );
+  };
+
   return (
     <ul className={styles.list}>
       {productList ? (
@@ -35,8 +44,11 @@ export default function Cards({}) {
               <p className={styles.name}>{product.name}</p>
               <span
                 className={`${styles.favorite} ${
-                  product.favorite ? "" : styles.not
+                  product.favorite
+                    ? styles.favoriteActive
+                    : styles.favoriteInactive
                 }`}
+                onClick={() => handleFavoriteClick(product._id)}
               >
                 ❤
               </span>

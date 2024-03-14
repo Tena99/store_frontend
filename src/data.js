@@ -25,7 +25,6 @@ export const sample_sweets = [
     id: "3",
     name: "White Chocolate Raspberry",
     price: 15,
-    cookTime: "15-20",
     favorite: false,
     origins: ["germany"],
     stars: 4.0,
@@ -36,7 +35,6 @@ export const sample_sweets = [
     id: "4",
     name: "Chocolate Hazelnut Spread",
     price: 8,
-    cookTime: "0-5",
     favorite: true,
     origins: ["italy"],
     stars: 4.8,
@@ -47,7 +45,6 @@ export const sample_sweets = [
     id: "5",
     name: "Chocolate Mint Cookies",
     price: 12,
-    cookTime: "20-30",
     favorite: false,
     origins: ["us", "uk"],
     stars: 4.3,
@@ -58,7 +55,6 @@ export const sample_sweets = [
     id: "6",
     name: "Hot Chocolate",
     price: 5,
-    cookTime: "5-10",
     favorite: false,
     origins: ["mexico", "south america"],
     stars: 4.5,
@@ -76,23 +72,4 @@ export const sample_tags = [
   { name: "breakfast", count: 1 },
   { name: "beverage", count: 1 },
   { name: "warm", count: 1 },
-];
-
-export const sample_users = [
-  {
-    id: 1,
-    name: "John Doe",
-    email: "john@gmail.com",
-    password: "12345",
-    address: "Toronto On",
-    isAdmin: false,
-  },
-  {
-    id: 2,
-    name: "Jane Doe",
-    email: "jane@gmail.com",
-    password: "12345",
-    address: "Shanghai",
-    isAdmin: true,
-  },
 ];

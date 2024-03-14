@@ -26,7 +26,6 @@ export default function DetailedInfo() {
   }, [id]);
 
   const handleAddToCart = () => {
-    // Implement functionality to add the product to the cart
     console.log("Product added to cart:", productInfo);
   };
 

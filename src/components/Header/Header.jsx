@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./header.module.css";
 import logo from "../../assets/images/logo.jpeg";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../../Context /creatConext";
+
 export default function Header() {
   const { user, logout } = useContext(UserContext);
 
@@ -29,16 +30,29 @@ export default function Header() {
           <ul className={styles.header_nav}>
             {user?.nickName ? (
               <li className={styles.menu_container}>
-                <Link to="/profile" className={styles.header_link}>
+                <NavLink
+                  to="/profile"
+                  className={styles.header_link}
+                  activeClassName={styles.active}
+                >
                   {user?.nickName}
-                </Link>
+                </NavLink>
                 <div className={styles.menu}>
-                  <Link to="/profile" className={styles.header_link}>
+                  <NavLink
+                    to="/profile"
+                    className={styles.header_link}
+                    activeClassName={styles.active}
+                  >
                     Profile
-                  </Link>
-                  <Link to="/orders" className={styles.header_link}>
+                  </NavLink>
+                  <NavLink
+                    to="/orders"
+                    className={({ isActive, isPending }) =>
+                      isPending ? "pending" : isActive ? "active" : ""
+                    }
+                  >
                     Orders
-                  </Link>
+                  </NavLink>
                   <a onClick={handleLogout} className={styles.header_link}>
                     Logout
                   </a>
@@ -54,19 +68,32 @@ export default function Header() {
         <div className={styles.nav}>
           <ul className={styles.header_nav}>
             <li className={styles.header_nav_item}>
-              <Link to={"/"} className={styles.header_link}>
+              <NavLink
+                to="/"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "green" : ""
+                }
+              >
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li className={styles.header_nav_item}>
-              <Link to={"/products"} className={styles.header_link}>
+              <NavLink
+                to={"/products"}
+                className={styles.header_link}
+                activeClassName={styles.active}
+              >
                 Products
-              </Link>
+              </NavLink>
             </li>
             <li className={styles.header_nav_item}>
-              <Link to={"/promo"} className={styles.header_link}>
+              <NavLink
+                to={"/promo"}
+                className={styles.header_link}
+                activeClassName={styles.active}
+              >
                 Promo
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </div>
