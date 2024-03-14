@@ -80,9 +80,8 @@ nav ul li a:hover {
   background: linear-gradient(#d78100, #f44519);
 }
 
-.menu a:hover {
-  background-color: rgb(217, 217, 217);
-  color: black;
+.menu_container:hover .menu {
+  display: block;
 }
 
 /* .cart_link,

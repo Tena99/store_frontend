@@ -6,6 +6,17 @@ import { useContext } from "react";
 import { UserContext } from "../../../Context /creatConext";
 export default function Header() {
   const { user, logout } = useContext(UserContext);
+
+  const handleLogout = () => {
+    if (
+      window.confirm(
+        "Are you really sure you want to logout and risk breaking Raghd's, Peter's, and Stacy's sweet little hearts? 💔👟\nBe warned, they might just unleash a virtual storm of sadness and angry emojis on you! 😢😠💻"
+      )
+    ) {
+      logout();
+    }
+  };
+
   return (
     <header className={styles.header}>
       <div className={`${styles.container} ${styles.header_container}`}>
@@ -28,7 +39,7 @@ export default function Header() {
                   <Link to="/orders" className={styles.header_link}>
                     Orders
                   </Link>
-                  <a onClick={logout} className={styles.header_link}>
+                  <a onClick={handleLogout} className={styles.header_link}>
                     Logout
                   </a>
                 </div>

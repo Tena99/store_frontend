@@ -1,48 +1,71 @@
 import { useParams } from "react-router-dom";
-import styles from "./styles.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import styles from "./styles.module.css";
 
 export default function DetailedInfo() {
-  let { id } = useParams();
-  console.log(id);
-
-  const [productInfo, setProductInfo] = useState();
-
-  console.log(productInfo);
+  const { id } = useParams();
+  const [productInfo, setProductInfo] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchProductInfo() {
-      let { data } = await axios.get(
-        `https://shopping-app-backend-6p1u.onrender.com/products/${id}`
-      );
-
-      setProductInfo(data);
+      try {
+        const { data } = await axios.get(
+          `https://shopping-app-backend-6p1u.onrender.com/products/${id}`
+        );
+        setProductInfo(data);
+      } catch (error) {
+        console.error("Error fetching product info:", error);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     fetchProductInfo();
-  }, []);
+  }, [id]);
+
+  const handleAddToCart = () => {
+    // Implement functionality to add the product to the cart
+    console.log("Product added to cart:", productInfo);
+  };
 
   return (
-    <div>
-      {productInfo ? (
-        <ul>
-          <li> Title: {productInfo.name}</li>
-          <li> Description: {productInfo.description}</li>
-          <li> Weight: {productInfo.weight}</li>
-          <li> Price: {productInfo.price}</li>
-          <li>
-            {" "}
-            Categories:
-            {productInfo.categories.map((category) => {
-              return <span>{category}</span>;
-            })}
-          </li>
-          <li>In stock: {productInfo.inStock}</li>
-          <li>Featured: {productInfo.featured.toString()}</li>
-        </ul>
-      ) : (
+    <div className="card">
+      {isLoading ? (
         <p>Loading...</p>
+      ) : (
+        <div>
+          <div className="card-header">
+            <h2>Product Information</h2>
+          </div>
+          <div className="card-body">
+            <ul>
+              <li>
+                <strong>Title:</strong> {productInfo.name}
+              </li>
+              <li>
+                <strong>Description:</strong> {productInfo.description}
+              </li>
+              <li>
+                <strong>Weight:</strong> {productInfo.weight}
+              </li>
+              <li>
+                <strong>Price:</strong> {productInfo.price}
+              </li>
+              <li>
+                <strong>Categories:</strong> {productInfo.categories.join(", ")}
+              </li>
+              <li>
+                <strong>In stock:</strong> {productInfo.inStock}
+              </li>
+              <li>
+                <strong>Featured:</strong> {productInfo.featured.toString()}
+              </li>
+            </ul>
+            <button onClick={handleAddToCart}>Add to Cart</button>
+          </div>
+        </div>
       )}
     </div>
   );

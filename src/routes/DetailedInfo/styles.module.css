@@ -1,0 +1,41 @@
+.card {
+  background: linear-gradient(#ffefeb, #fb9d19);
+  border-radius: 15px;
+  border: 2px solid rgb(0, 0, 0);
+  padding: 20px;
+  width: 50%;
+  margin: auto;
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: joyful-wiggle 1s ease-out;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+button {
+  padding: 10px 30px;
+  border: 2px solid white;
+  border-radius: 20px;
+  background: linear-gradient(#d78100, #f44519);
+  color: white;
+  font-size: 16px;
+  transition: all 0.3s ease-out;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
