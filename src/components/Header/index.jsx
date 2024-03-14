@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./header.module.css";
+import styles from "./styles.module.css";
 import logo from "../../assets/images/logo.jpeg";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { UserContext } from "../../../Context /creatConext";
+import { UserContext } from "../../../Context/createContext";
 export default function Header() {
   const { user, logout } = useContext(UserContext);
 
@@ -19,7 +19,7 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      <div className={`${styles.container} ${styles.header_container}`}>
+      <div className={` ${styles.header_container}`}>
         <div className={styles.logo_container}>
           <Link to={"/"}>
             <img src={logo} alt="logo"></img>

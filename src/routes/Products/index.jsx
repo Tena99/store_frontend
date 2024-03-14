@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-import { UserContext } from "../../../Context /creatConext";
+import { UserContext } from "../../../Context/createContext";
 import { useContext } from "react";
 import Card from "../../components/Card";
 

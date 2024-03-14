@@ -1,5 +1,5 @@
 import QRCodeComponent from "../../components/QR-Code";
-import { UserContext } from "../../../Context /creatConext";
+import { UserContext } from "../../../Context/createContext";
 import { useContext } from "react";
 import styles from "./styles.module.css";
 import { Link } from "react-router-dom";

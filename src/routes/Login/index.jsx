@@ -1,7 +1,6 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import styles from "./styles.module.css";
-import { UserContext } from "../../../Context /creatConext";
-import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../../Context/createContext";
 import axios from "axios";
 
 export default function Login() {
@@ -9,13 +8,8 @@ export default function Login() {
 
   const [emailInputValue, setEmailInputValue] = useState("");
   const [passwordInputValue, setPasswordInputValue] = useState("");
-  const history = useNavigate();
 
-  // useEffect(() => {
-  //   if (user) {
-  //     history.push("/Home");
-  //   }
-  // }, [user, history]);
+  console.log(user);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
