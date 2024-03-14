@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 import StarRating from "../StarRating/StarRating";
 import axios from "axios";
 
-export default function Cards({}) {
+export default function Cards() {
   const [productList, setProductList] = useState();
 
   useEffect(() => {

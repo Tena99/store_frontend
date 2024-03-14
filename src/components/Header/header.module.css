@@ -3,6 +3,7 @@ header {
   border-radius: var(--header-border-radius);
   padding: 10px 0;
   justify-content: space-around;
+  margin: 25px;
 }
 .nav {
   display: flex;
@@ -38,10 +39,11 @@ header {
   display: flex;
   margin: 0;
   padding: 0;
+  justify-content: space-evenly;
 }
 
 .header_nav_item {
-  margin-left: 500px;
+  margin-left: 25px;
 }
 nav ul li a {
   padding: 10px;

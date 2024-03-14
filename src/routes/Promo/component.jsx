@@ -2,7 +2,6 @@ import QRCodeComponent from "../../components/QR-Code";
 import { UserContext } from "../../../Context /creatConext";
 import { useContext } from "react";
 import styles from "./styles.module.css";
-import skeleton from "../../assets/images/skeleton.jpeg";
 import { Link } from "react-router-dom";
 
 export default function Promo() {
