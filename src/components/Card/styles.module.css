@@ -84,3 +84,16 @@
   margin-top: 0.7rem;
   font-size: 1.1rem;
 }
+
+.favorite {
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.favoriteActive {
+  color: red;
+}
+
+.favoriteInactive {
+  color: gray;
+}
