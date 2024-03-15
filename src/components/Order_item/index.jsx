@@ -8,8 +8,6 @@ export default function Order_item({ title, price, id, serverAmount }) {
   const { user, login } = useContext(UserContext);
   const [amount, setAmount] = useState(serverAmount);
 
-  console.log(serverAmount);
-
   useEffect(() => {
     async function changeAmount() {
       const requestBody = {
@@ -19,18 +17,34 @@ export default function Order_item({ title, price, id, serverAmount }) {
 
       const url = `https://shopping-app-backend-6p1u.onrender.com/products/${id}`;
 
-      axios
-        .patch(url, requestBody)
-        .then((response) => {
-          console.log("Response:", response.data);
-        })
-        .catch((error) => {
-          console.error("Error:", error.response.data);
-        });
+      axios.patch(url, requestBody);
+      // .then((response) => {
+      //   console.log("Response:", response.data);
+      // })
+      // .catch((error) => {
+      //   console.error("Error:", error.response.data);
+      // });
     }
 
     changeAmount();
   }, [amount]);
+
+  async function deleteItem() {
+    const requestBody = {
+      userId: user._id,
+    };
+
+    console.log(id);
+    const url = `https://shopping-app-backend-6p1u.onrender.com/products/${id}/${user._id}`;
+
+    axios.delete(url, requestBody);
+    // .then((response) => {
+    //   console.log("Response:", response.data);
+    // })
+    // .catch((error) => {
+    //   console.error("Error:", error.response.data);
+    // });
+  }
 
   function increment() {
     if (amount < 10) {
@@ -54,7 +68,7 @@ export default function Order_item({ title, price, id, serverAmount }) {
         <button onClick={increment}>+</button>
       </div>
 
-      <button>X</button>
+      <button onClick={deleteItem}>X</button>
     </div>
   );
 }
