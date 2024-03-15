@@ -1,10 +1,9 @@
 import React from "react";
-import styles from "./header.module.css";
+import styles from "./styles.module.css";
 import logo from "../../assets/images/logo.jpeg";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { UserContext } from "../../../Context /creatConext";
-
+import { UserContext } from "../../../Context/createContext";
 export default function Header() {
   const { user, logout } = useContext(UserContext);
 
@@ -20,7 +19,7 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      <div className={`${styles.container} ${styles.header_container}`}>
+      <div className={` ${styles.header_container}`}>
         <div className={styles.logo_container}>
           <Link to={"/"}>
             <img src={logo} alt="logo"></img>
@@ -30,29 +29,16 @@ export default function Header() {
           <ul className={styles.header_nav}>
             {user?.nickName ? (
               <li className={styles.menu_container}>
-                <NavLink
-                  to="/profile"
-                  className={styles.header_link}
-                  activeClassName={styles.active}
-                >
+                <Link to="/profile" className={styles.header_link}>
                   {user?.nickName}
-                </NavLink>
+                </Link>
                 <div className={styles.menu}>
-                  <NavLink
-                    to="/profile"
-                    className={styles.header_link}
-                    activeClassName={styles.active}
-                  >
+                  <Link to="/profile" className={styles.header_link}>
                     Profile
-                  </NavLink>
-                  <NavLink
-                    to="/orders"
-                    className={({ isActive, isPending }) =>
-                      isPending ? "pending" : isActive ? "active" : ""
-                    }
-                  >
+                  </Link>
+                  <Link to="/orders" className={styles.header_link}>
                     Orders
-                  </NavLink>
+                  </Link>
                   <a onClick={handleLogout} className={styles.header_link}>
                     Logout
                   </a>
@@ -68,32 +54,19 @@ export default function Header() {
         <div className={styles.nav}>
           <ul className={styles.header_nav}>
             <li className={styles.header_nav_item}>
-              <NavLink
-                to="/"
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "green" : ""
-                }
-              >
+              <Link to={"/"} className={styles.header_link}>
                 Home
-              </NavLink>
+              </Link>
             </li>
             <li className={styles.header_nav_item}>
-              <NavLink
-                to={"/products"}
-                className={styles.header_link}
-                activeClassName={styles.active}
-              >
+              <Link to={"/products"} className={styles.header_link}>
                 Products
-              </NavLink>
+              </Link>
             </li>
             <li className={styles.header_nav_item}>
-              <NavLink
-                to={"/promo"}
-                className={styles.header_link}
-                activeClassName={styles.active}
-              >
+              <Link to={"/promo"} className={styles.header_link}>
                 Promo
-              </NavLink>
+              </Link>
             </li>
           </ul>
         </div>

@@ -1,6 +1,6 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import styles from "./styles.module.css";
-import { UserContext } from "../../../Context /creatConext";
+import { UserContext } from "../../../Context/createContext";
 import axios from "axios";
 
 export default function Login() {
@@ -9,11 +9,7 @@ export default function Login() {
   const [emailInputValue, setEmailInputValue] = useState("");
   const [passwordInputValue, setPasswordInputValue] = useState("");
 
-  // useEffect(() => {
-  //   if (user) {
-  //     history.push("/Home");
-  //   }
-  // }, [user, history]);
+  console.log(user);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,17 +20,16 @@ export default function Login() {
         );
 
         if (usersList) {
-          let user = usersList.data.find((user) => {
-            if (user.email === emailInputValue) {
-              return user;
+          usersList.data.find((user) => {
+            if (
+              user.email === emailInputValue &&
+              user.password === passwordInputValue
+            ) {
+              login(user);
+            } else {
+              console.log("Wrong credentials");
             }
           });
-
-          if (user.password === passwordInputValue) {
-            login(user);
-          } else {
-            console.log("Wrong Password");
-          }
         }
       } catch (error) {
         console.error(error);

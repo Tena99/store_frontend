@@ -1,29 +1,36 @@
-import { useEffect, useReducer } from "react";
-import Thumbnails from "../../components/Thumbnails/Thumbnails";
-import { getAll } from "../../services/sweetService";
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "Sweets_loaded":
-      return { ...state, sweets: action.payload };
-    default:
-      return state;
-  }
-};
+import styles from "./styles.module.css";
+import Card from "../../components/Card";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Home() {
-  const [state, dispatch] = useReducer(reducer, { sweets: [] });
-  const { sweets } = state;
+  const [productList, setProductList] = useState();
 
   useEffect(() => {
-    getAll().then((sweets) =>
-      dispatch({ type: "Sweets_loaded", payload: sweets })
-    );
+    async function fetchTopProducts() {
+      let { data } = await axios.get(
+        `https://shopping-app-backend-6p1u.onrender.com/products/featured`
+      );
+
+      setProductList(data);
+    }
+
+    fetchTopProducts();
   }, []);
 
   return (
-    <>
-      <Thumbnails sweets={sweets} />
-    </>
+    <div>
+      {productList ? (
+        productList.map((product) => (
+          <Card
+            key={product._id}
+            product={product}
+            imgSrc={`https://shopping-app-backend-6p1u.onrender.com/images/${product._id}.jpeg`}
+          ></Card>
+        ))
+      ) : (
+        <div>Loading... Please wait</div>
+      )}
+    </div>
   );
 }

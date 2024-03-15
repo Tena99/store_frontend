@@ -9,7 +9,7 @@ import Promo from "./routes/Promo/component.jsx";
 import Login from "./routes/Login/index.jsx";
 import Profile from "./routes/Profile/index.jsx";
 import Orders from "./routes/Orders/index.jsx";
-import { UserProvider } from "../Context /creatConext.jsx";
+import { UserProvider } from "../Context/createContext.jsx";
 import DetailedInfo from "./routes/DetailedInfo/index.jsx";
 const router = createBrowserRouter([
   {
