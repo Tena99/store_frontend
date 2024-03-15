@@ -1,0 +1,28 @@
+.container {
+  background-color: white;
+  margin: 25px;
+  padding: 10px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h3 {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  button {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+}
+
+.amount_container {
+  display: flex;
+  align-items: center;
+
+  p {
+    margin: 0 5px;
+  }
+}

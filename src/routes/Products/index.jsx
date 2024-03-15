@@ -1,14 +1,35 @@
 import styles from "./styles.module.css";
-import { UserContext } from "../../../Context/createContext";
-import { useContext } from "react";
 import Card from "../../components/Card";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Products() {
-  const { user, login } = useContext(UserContext);
+  const [productList, setProductList] = useState();
+
+  useEffect(() => {
+    async function fetchProducts() {
+      let { data } = await axios.get(
+        `https://shopping-app-backend-6p1u.onrender.com/products`
+      );
+
+      setProductList(data);
+    }
+
+    fetchProducts();
+  }, []);
 
   return (
     <div>
-      <Card />
+      {productList ? (
+        productList.map((product) => (
+          <Card
+            product={product}
+            imgSrc={`https://shopping-app-backend-6p1u.onrender.com/images/${product._id}.jpeg`}
+          ></Card>
+        ))
+      ) : (
+        <div>Nothing</div>
+      )}
     </div>
   );
 }
