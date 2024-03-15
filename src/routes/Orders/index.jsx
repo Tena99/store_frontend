@@ -11,7 +11,13 @@ export default function Orders() {
       {user.cart.length ? (
         user.cart.map((item) => {
           return (
-            <Order_item key={item._id} title={item.name} price={item.price} />
+            <Order_item
+              key={item._id._id}
+              id={item._id._id}
+              title={item._id.name}
+              price={item._id.price}
+              serverAmount={item.amount}
+            />
           );
         })
       ) : (

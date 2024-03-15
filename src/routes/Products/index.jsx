@@ -23,12 +23,13 @@ export default function Products() {
       {productList ? (
         productList.map((product) => (
           <Card
+            key={product._id}
             product={product}
             imgSrc={`https://shopping-app-backend-6p1u.onrender.com/images/${product._id}.jpeg`}
           ></Card>
         ))
       ) : (
-        <div>Nothing</div>
+        <div>Loading... Please wait.</div>
       )}
     </div>
   );

@@ -1,8 +1,36 @@
 import styles from "./styles.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "../../../Context/createContext";
+import axios from "axios";
 
-export default function Order_item({ title, price }) {
-  const [amount, setAmount] = useState(0);
+export default function Order_item({ title, price, id, serverAmount }) {
+  const { user, login } = useContext(UserContext);
+  const [amount, setAmount] = useState(serverAmount);
+
+  console.log(serverAmount);
+
+  useEffect(() => {
+    async function changeAmount() {
+      const requestBody = {
+        userId: user._id,
+        amount: amount,
+      };
+
+      const url = `https://shopping-app-backend-6p1u.onrender.com/products/${id}`;
+
+      axios
+        .patch(url, requestBody)
+        .then((response) => {
+          console.log("Response:", response.data);
+        })
+        .catch((error) => {
+          console.error("Error:", error.response.data);
+        });
+    }
+
+    changeAmount();
+  }, [amount]);
 
   function increment() {
     if (amount < 10) {
