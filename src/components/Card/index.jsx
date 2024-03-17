@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 import StarRating from "../StarRating/StarRating";
 
 export default function Cards({ product, imgSrc }) {
+  const [isFavorite, setIsFavorite] = useState(product.favorite);
+
+  const handleFavoriteClick = () => {
+    setIsFavorite(!isFavorite);
+  };
+
   return (
     <ul className={styles.list}>
       {product ? (
@@ -15,8 +21,9 @@ export default function Cards({ product, imgSrc }) {
             <p className={styles.name}>{product.name}</p>
             <span
               className={`${styles.favorite} ${
-                product.favorite ? "" : styles.not
+                isFavorite ? styles.favoriteActive : styles.not
               }`}
+              onClick={handleFavoriteClick}
             >
               ❤
             </span>
