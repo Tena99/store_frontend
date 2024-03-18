@@ -4,7 +4,14 @@ import { useContext } from "react";
 import { UserContext } from "../../../Context/createContext";
 import axios from "axios";
 
-export default function Order_item({ title, price, id, serverAmount }) {
+export default function Order_item({
+  title,
+  price,
+  id,
+  serverAmount,
+  discountedPrice,
+  discountPercetage,
+}) {
   const { user, login } = useContext(UserContext);
   const [amount, setAmount] = useState(serverAmount);
 
@@ -53,7 +60,7 @@ export default function Order_item({ title, price, id, serverAmount }) {
   }
 
   function decrement() {
-    if (amount > 0) {
+    if (amount > 1) {
       setAmount(amount - 1);
     }
   }
@@ -66,6 +73,17 @@ export default function Order_item({ title, price, id, serverAmount }) {
         <button onClick={decrement}>-</button>
         <p>{amount}</p>
         <button onClick={increment}>+</button>
+      </div>
+
+      <div>
+        {discountedPrice !== price ? (
+          <div>
+            <p>Discount {discountPercetage}%!</p>
+            <p>Total: {(discountedPrice * amount).toFixed(2)} €</p>{" "}
+          </div>
+        ) : (
+          <p>Total: {(price * amount).toFixed(2)} €</p>
+        )}
       </div>
 
       <button onClick={deleteItem}>X</button>

@@ -17,6 +17,8 @@ export default function Orders() {
               title={item._id.name}
               price={item._id.price}
               serverAmount={item.amount}
+              discountedPrice={item.discountedPrice}
+              discountPercetage={user.discount}
             />
           );
         })

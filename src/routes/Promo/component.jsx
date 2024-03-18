@@ -46,7 +46,7 @@ export default function Promo() {
       {user ? (
         <article className={styles.promo_item}>
           <div className={styles.promo_qr_code}>
-            <QRCodeComponent value={`scanned by ${user._id}`} />
+            <QRCodeComponent value={`{userId: ${user._id}, discount: 10 }`} />
           </div>
 
           <div>
