@@ -9,8 +9,6 @@ export default function Login() {
   const [emailInputValue, setEmailInputValue] = useState("");
   const [passwordInputValue, setPasswordInputValue] = useState("");
 
-  console.log(user);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (emailInputValue && passwordInputValue) {
