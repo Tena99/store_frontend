@@ -1,41 +1,79 @@
 .card {
-  background: linear-gradient(#ffefeb, #fb9d19);
-  border-radius: 15px;
-  border: 2px solid rgb(0, 0, 0);
-  padding: 20px;
-  width: 50%;
-  margin: auto;
-  margin-top: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  animation: joyful-wiggle 1s ease-out;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.card-header {
-  background-color: #f0f0f0;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
-
-.card-body {
-  padding: 20px;
-}
-
-button {
-  padding: 10px 30px;
-  border: 2px solid white;
-  border-radius: 20px;
-  background: linear-gradient(#d78100, #f44519);
-  color: white;
-  font-size: 16px;
-  transition: all 0.3s ease-out;
+  position: relative;
+  left: 20%;
+  width: 60%;
+  height: 50%m;
+  box-shadow: 8px solid black;
   cursor: pointer;
+  transition: all 120ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(#c5d3d1, #ff9e15);
+  padding: 0.5em;
+  padding-bottom: 3.4em;
+  border-radius: 8px;
+  border-color: #ff9e15;
 }
 
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.card::after {
+  content: "Add to Cart";
+  width: 60%;
+  padding-top: 1.25em;
+  padding-left: 1.25em;
+  position: absolute;
+  left: 0;
+  bottom: -60px;
+  background: linear-gradient(#c5d3d1, #ff9e15);
+  color: #bc2929;
+  height: 2.5em;
+  transition: all 80ms;
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0;
+}
+
+.card .title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9em;
+  position: absolute;
+  left: 0.625em;
+  bottom: 1.875em;
+  font-weight: 400;
+  color: #000;
+}
+
+.card .price {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 0.9em;
+  position: absolute;
+  left: 0.625em;
+  bottom: 0.625em;
+  color: #000;
+}
+
+.card:hover::after {
+  bottom: 0;
+  opacity: 1;
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
+.card:active::after {
+  content: "Added !";
+  height: 3.125em;
+}
+
+.text {
+  max-width: 55px;
+}
+
+.image {
+  background: rgb(241, 241, 241);
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
 }
