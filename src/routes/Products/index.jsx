@@ -19,7 +19,7 @@ export default function Products() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.container}>
       {productList ? (
         productList.map((product) => (
           <Card

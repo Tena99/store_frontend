@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "../../components/Card";
 import axios from "axios";
+import styles from "./styles.module.css";
 
 export default function Home() {
   const [productList, setProductList] = useState([]);
@@ -21,7 +22,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       {productList.length > 0 ? (
         productList.map((product) => (
           <Card
