@@ -66,9 +66,9 @@ export default function DetailedInfo() {
                 <strong>Featured:</strong> {productInfo.featured.toString()}
               </li>
             </ul>
-            {/* <button className={styles.text} onClick={handleAddToCart}>
+            <button className={styles.text} onClick={handleAddToCart}>
               Add to Cart
-            </button>{" "} */}
+            </button>
           </div>
         </div>
       )}
