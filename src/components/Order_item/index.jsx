@@ -4,11 +4,16 @@ import { useContext } from "react";
 import { UserContext } from "../../../Context/createContext";
 import axios from "axios";
 
-export default function Order_item({ title, price, id, serverAmount }) {
+export default function Order_item({
+  title,
+  price,
+  id,
+  serverAmount,
+  discountedPrice,
+  discountPercetage,
+}) {
   const { user, login } = useContext(UserContext);
   const [amount, setAmount] = useState(serverAmount);
-
-  console.log(serverAmount);
 
   useEffect(() => {
     async function changeAmount() {
@@ -19,18 +24,34 @@ export default function Order_item({ title, price, id, serverAmount }) {
 
       const url = `https://shopping-app-backend-6p1u.onrender.com/products/${id}`;
 
-      axios
-        .patch(url, requestBody)
-        .then((response) => {
-          console.log("Response:", response.data);
-        })
-        .catch((error) => {
-          console.error("Error:", error.response.data);
-        });
+      axios.patch(url, requestBody);
+      // .then((response) => {
+      //   console.log("Response:", response.data);
+      // })
+      // .catch((error) => {
+      //   console.error("Error:", error.response.data);
+      // });
     }
 
     changeAmount();
   }, [amount]);
+
+  async function deleteItem() {
+    const requestBody = {
+      userId: user._id,
+    };
+
+    console.log(id);
+    const url = `https://shopping-app-backend-6p1u.onrender.com/products/${id}/${user._id}`;
+
+    axios.delete(url, requestBody);
+    // .then((response) => {
+    //   console.log("Response:", response.data);
+    // })
+    // .catch((error) => {
+    //   console.error("Error:", error.response.data);
+    // });
+  }
 
   function increment() {
     if (amount < 10) {
@@ -39,7 +60,7 @@ export default function Order_item({ title, price, id, serverAmount }) {
   }
 
   function decrement() {
-    if (amount > 0) {
+    if (amount > 1) {
       setAmount(amount - 1);
     }
   }
@@ -54,7 +75,18 @@ export default function Order_item({ title, price, id, serverAmount }) {
         <button onClick={increment}>+</button>
       </div>
 
-      <button>X</button>
+      <div>
+        {discountedPrice !== price ? (
+          <div>
+            <p>Discount {discountPercetage}%!</p>
+            <p>Total: {(discountedPrice * amount).toFixed(2)} €</p>{" "}
+          </div>
+        ) : (
+          <p>Total: {(price * amount).toFixed(2)} €</p>
+        )}
+      </div>
+
+      <button onClick={deleteItem}>X</button>
     </div>
   );
 }

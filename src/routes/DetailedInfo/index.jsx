@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { UserContext } from "../../../Context/createContext";
 import axios from "axios";
 import styles from "./styles.module.css";
 
@@ -7,6 +9,7 @@ export default function DetailedInfo() {
   const { id } = useParams();
   const [productInfo, setProductInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     async function fetchProductInfo() {
@@ -25,9 +28,24 @@ export default function DetailedInfo() {
     fetchProductInfo();
   }, [id]);
 
-  const handleAddToCart = () => {
-    console.log("Product added to cart:", productInfo);
-  };
+  async function handleAddToCart() {
+    axios
+      .put(
+        `https://shopping-app-backend-6p1u.onrender.com/products/${productInfo._id}/${user._id}`
+      )
+      .then((response) => {
+        console.log("Response:", response.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.error("Error Response:", error.response.data);
+        } else if (error.request) {
+          console.error("No Response:", error.request);
+        } else {
+          console.error("Error:", error.message);
+        }
+      });
+  }
 
   return (
     <div className={styles.card}>
