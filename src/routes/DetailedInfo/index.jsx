@@ -30,15 +30,19 @@ export default function DetailedInfo() {
   };
 
   return (
-    <div className="card">
+    <div className={styles.card}>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
         <div>
-          <div className="card-header">
+          <div className={styles["card-header"]}>
+            {" "}
+            {/* Apply the 'card-header' class */}
             <h2>Product Information</h2>
           </div>
-          <div className="card-body">
+          <div className={styles["card-body"]}>
+            {" "}
+            {/* Apply the 'card-body' class */}
             <ul>
               <li>
                 <strong>Title:</strong> {productInfo.name}
@@ -62,7 +66,9 @@ export default function DetailedInfo() {
                 <strong>Featured:</strong> {productInfo.featured.toString()}
               </li>
             </ul>
-            <button onClick={handleAddToCart}>Add to Cart</button>
+            {/* <button className={styles.text} onClick={handleAddToCart}>
+              Add to Cart
+            </button>{" "} */}
           </div>
         </div>
       )}

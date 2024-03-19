@@ -1,32 +1,34 @@
-import styles from "./styles.module.css";
+import React, { useState, useEffect } from "react";
 import Card from "../../components/Card";
-import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Home() {
-  const [productList, setProductList] = useState();
+  const [productList, setProductList] = useState([]);
 
   useEffect(() => {
     async function fetchTopProducts() {
-      let { data } = await axios.get(
-        `https://shopping-app-backend-6p1u.onrender.com/products/featured`
-      );
-
-      setProductList(data);
+      try {
+        const response = await axios.get(
+          "https://shopping-app-backend-6p1u.onrender.com/products/featured"
+        );
+        setProductList(response.data);
+      } catch (error) {
+        console.error("Error fetching top products:", error);
+      }
     }
 
     fetchTopProducts();
   }, []);
 
   return (
-    <div>
-      {productList ? (
+    <div className="container">
+      {productList.length > 0 ? (
         productList.map((product) => (
           <Card
             key={product._id}
             product={product}
             imgSrc={`https://shopping-app-backend-6p1u.onrender.com/images/${product._id}.jpeg`}
-          ></Card>
+          />
         ))
       ) : (
         <div>Loading... Please wait</div>

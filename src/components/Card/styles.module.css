@@ -1,8 +1,14 @@
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .list {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  flex-direction: row;
   list-style-type: none;
   padding: 0;
 }
@@ -18,11 +24,14 @@
   overflow: hidden;
   color: #333;
   text-decoration: none;
-  transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.5s;
 }
 
 .list li a:hover {
-  transform: translateY(-5px);
+  transform: translateZ(10px) rotateX(20deg) rotateY(20deg);
+
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -96,4 +105,32 @@
 
 .favoriteInactive {
   color: gray;
+}
+.name {
+  color: #cf8332;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  transition: transform 0.5s;
+  font: 700 1.5rem monospace;
+}
+
+.name:hover {
+  transform: translateZ(50px);
+}
+@keyframes loadingAnimation {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.loading {
+  animation: loadingAnimation 1.5s infinite;
 }
